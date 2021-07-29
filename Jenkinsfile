@@ -57,6 +57,7 @@ pipeline {
               script {
                   myapp = docker.build("nginx-test_v1", "-f Dockerfile .")
               }
+          }
         }
     }
 }
