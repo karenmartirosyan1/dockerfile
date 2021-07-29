@@ -41,16 +41,22 @@ pipeline {
           steps { 
               container('jnlp') {
                   sh 'git --version'
-                                }
+              }
                 script { 
                   sh 'docker pull mysql' 
-                    }
-                    
-                  
-        }    
-              
+                }                          
+          }                  
         }
-        
-        
+        stage("Build php-cli image for Staging") {
+           when {
+             expression {
+               return env.GIT_BRANCH == "origin/master"
+             }
+           }
+         steps {
+             script {
+                 myapp = docker.build("popupschool/backend-api:worker-${env.GIT_COMMIT}", "--target prod-worker -f ./docker/php/Dockerfile .")
+             }
+         }
     }
 }
