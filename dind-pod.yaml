@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dind-test
+  namespace: karen-test
+  labels:  
+    app: dind-test
+spec:  
+  containers:
+  - name: dind-test
+    image: docker:18.05-dind
+#    env: 
+#    - name: DOCKER_TLS_CERTDIR
+#      value: ''
+    volumeMounts:
+    - name: dind-storage
+      mountPath: /var/lib/docker
+    securityContext:
+      privileged: true
+  volumes:
+  - name: dind-storage
+    persistentVolumeClaim:
+      claimName: myclaim
