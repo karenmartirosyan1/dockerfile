@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dind-svc
+  namespace: karen-test
+spec:
+  selector:
+    app: dind-test
+  ports:
+    - protocol: TCP
+      port: 2375
+      targetPort: 2375
