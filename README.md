@@ -2,7 +2,7 @@
  This document introduces a solution for connecting to the Dind server from the Dind pod running as a Jenkins agent which is defined in the Jenkinsfile.
  # Components
  * ##  Dind server.
-    For our case Dind server must listen on port 2375. Here are K8S Dind pod, pv, pvc and service examples defined in yaml.
+    For our case Dind server must listen on port 2375. Here are K8S Dind pod, pv, pvc and service examples defined in ``yaml``.
  ``` yaml
   apiVersion: v1
   kind: Pod
@@ -69,9 +69,9 @@ spec:
       targetPort: 2375
  ``` 
 * ## Jenkinsfile
-    Here is the Jenkinsfile example with Dind pod defined as an agent and executig a docker build command in the Dind server.
+    Here is the Jenkinsfile example with Dind pod defined as an agent and executig a ``docker build`` command in the Dind server.
 
-    **Note**: defaultContainer is set to dind, so if you want to run a command inside a jnlp container you must specify it 
+    **Note**: ``defaultContainer`` is set to `dind`, so if you want to run a command inside a ``jnlp`` container you must specify it.
     ```Jenskinsfile 
         pipeline {
             agent {
