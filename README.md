@@ -4,7 +4,7 @@
  ## Solution
  This solution introduces a Dind Client Pod defined the Jenkinsfile as a Jenkins agent which connects to the Dind Server and executes a command. 
  # Components
- * ##  Dind Server.
+ * ##  Dind Server
     For this case Dind Server must listen on port ``2375``. Here are K8S Dind Server Pod, PV, PVC and Service examples defined in ``yaml``.
  ``` yaml
 apiVersion: v1
