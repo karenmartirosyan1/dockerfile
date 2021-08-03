@@ -100,7 +100,7 @@ spec:
                             securityContext:
                             env:
                             - name: DOCKER_HOST
-                              value: tcp://dind-svc.karen-test.svc.cluster.                    local:2375              
+                              value: tcp://dind-svc.karen-test.svc.cluster.local:2375              
                               privileged: true
                             command:
                             - sh 
