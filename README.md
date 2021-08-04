@@ -1,8 +1,8 @@
  # Description
  ## Problem
- Instead of manually executing a ``docker build`` command in the Dind Server Pod we need to have a dynamically provisioned pod which will connect to the Dind Server Pod and execute ``docker build`` command.
+ The problem was that we had a static running Jenkins agent which served both as Dind Server and Dind Client. So we always had running Dind Client even if we didn't need it. The Jenkins agent exposed port 22. Jenkins job connected to the Jenkins agent via SSH and ran Docker commands.
  ## Solution
- This solution introduces a Dind Client Pod defined the Jenkinsfile as a Jenkins agent which connects to the Dind Server and executes a command. 
+ This solution introduces separate, dynamically provisioned Jenkins agent. It is a Dind Client Pod defined in the Jenkinsfile. Dind Server is always in the running state, while Dind Client Pod is creating by the Jenkins job only when it is needed, executes a Docker command and then Jenkins job terminates it. Dind Client Pod connects with Dind Server Pod via dind-server-servicename:port credentials defined in the DOCKER_HOST variable.
  # Components
  * ##  Dind Server
     For this case Dind Server must listen on port ``2375``. Here are K8S Dind Server Pod, PV, PVC and Service examples defined in ``yaml``.
